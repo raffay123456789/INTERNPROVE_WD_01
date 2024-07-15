@@ -1,0 +1,40 @@
+#nav {
+    position: fixed;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    inline-size: 100%;
+    background-color: #333;
+    padding: 10px;
+    text-align: center;
+    transition: background-color 0.5s ease;
+  }
+  
+  #nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  #nav li {
+    margin-inline-end: 20px;
+  }
+  
+  #nav a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.5s ease;
+  }
+  
+  #nav a:hover {
+    color: #cccccc;
+  }
+  
+  #nav.scrolled {
+    background-color: #870d0d;
+  }
+  
+  #nav.scrolled a {
+    color: #aaaaaa;
+  }

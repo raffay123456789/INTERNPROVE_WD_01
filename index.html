@@ -1,0 +1,136 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Interactive Navigation</title>
+  <style>
+    /* Global Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f9f9f9;
+      height: 2000px; /* Add height to enable scrolling */
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    p {
+      margin-bottom: 20px;
+    }
+    /* Navigation Styles */
+    #nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #333;
+      color: #fff;
+      padding: 1em;
+      text-align: center;
+      z-index: 1000;
+      transition: background-color 0.5s ease; /* Add transition effect */
+    }
+    #nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+    }
+    #nav li {
+      margin-right: 20px;
+    }
+    #nav a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.5s ease; /* Add transition effect */
+    }
+    #nav a:hover {
+      color: red; /* Change color to red on hover */
+    }
+    #nav.scrolled {
+      background-color: #444;
+      color: #aaa;
+    }
+    #nav.scrolled a {
+      color: #aaa;
+    }
+    #nav.scrolled a:hover {
+      color: red; /* Change color to red on hover when scrolled */
+    }
+    /* Content Styles */
+    .content {
+      padding: 2em;
+      margin-top: 60px; /* Add margin to account for fixed nav */
+    }
+    .content section {
+      display: none; /* Hide all sections by default */
+    }
+    .content section.active {
+      display: block; /* Show active section */
+    }
+  </style>
+</head>
+<body>
+  <nav id="nav">
+    <ul>
+      <li><a href="#" data-target="home">Home</a></li>
+      <li><a href="#" data-target="about">About</a></li>
+      <li><a href="#" data-target="services">Services</a></li>
+      <li><a href="#" data-target="contact">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="content">
+    <section id="home" class="active">
+      <h1>Welcome to the Home Page</h1>
+      <p>This is the home page.</p>
+    </section>
+    <section id="about">
+      <h1>Welcome to the About Page</h1>
+      <p>This is the about page.</p>
+    </section>
+    <section id="services">
+      <h1>Welcome to the Services Page</h1>
+      <p>This is the services page.</p>
+    </section>
+    <section id="contact">
+      <h1>Welcome to the Contact Page</h1>
+      <p>This is the contact page.</p>
+    </section>
+  </div>
+  <script>
+    const navLinks = document.querySelectorAll('#nav a');
+    const sections = document.querySelectorAll('.content section');
+    const nav = document.getElementById('nav');
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        const targetId = link.getAttribute('data-target');
+        const targetSection = document.getElementById(targetId);
+        sections.forEach(section => section.classList.remove('active'));
+        targetSection.classList.add('active');
+      });
+    });
+
+    window.onscroll = function() {
+      scrollFunction()
+    };
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        nav.classList.add("scrolled");
+      } else {
+        nav.classList.remove("scrolled");
+      }
+    }
+  </script>
+</body>
+</html>
